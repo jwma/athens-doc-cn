@@ -2,7 +2,7 @@
 
 依照 Go 团队的[这份提案](https://go.googlesource.com/proposal/+/master/design/25530-sumdb.md '这份提案')，Athens Proxy 可以代理 Checksum 数据库。
 
-Athens 默认会接受代理 `https://sum.golang.org`。尽管如此，如果你想重写这个默认行为或是代理更多的 Checksum 数据库，你可以通过 SumDBs 配置或者使用等价的环境变量: ATHENS_SUM_DBS。
+Athens 默认会接受代理 `https://sum.golang.org`。尽管如此，如果你想重写这个默认行为或是代理更多的 Checksum 数据库，你可以通过 SumDBs 配置或者使用等价的环境变量: `ATHENS_SUM_DBS`。
 
 例如你运行下面这个命令：
 ```bash
@@ -33,5 +33,4 @@ Athens 在这种情况下，能够确保所有流经它的私有代码永远不�
 NoSumPatterns = ["github.com/mycompany/*"] # 或者使用以逗号分隔的环境变量：ATHENS_GONOSUM_PATTERNS
 ```
 
-这将确保了 Go 发送请求到 `<athens-url/sumdb/sum.golang.org/github.com/mycompany/secret-repo@v1.0.0>` 时，Athens 会返回 403 并且让构建失败，以确保使用者知道有一些配置项
-不正确且不会泄露那些导入路径。
+这将确保了 Go 发送请求到 `<athens-url/sumdb/sum.golang.org/github.com/mycompany/secret-repo@v1.0.0>` 时，Athens 会返回 403 并且让构建失败，以确保使用者知道有一些配置项不正确且不会泄露那些导入路径。
